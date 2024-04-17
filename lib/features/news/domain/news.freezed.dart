@@ -20,12 +20,12 @@ News _$NewsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$News {
-  String get author => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get publishedAt => throw _privateConstructorUsedError;
-  String get urlToImage => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  String? get author => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get publishedAt => throw _privateConstructorUsedError;
+  String? get urlToImage => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +38,12 @@ abstract class $NewsCopyWith<$Res> {
       _$NewsCopyWithImpl<$Res, News>;
   @useResult
   $Res call(
-      {String author,
-      String title,
-      String description,
-      String publishedAt,
-      String urlToImage,
-      String content});
+      {String? author,
+      String? title,
+      String? description,
+      String? publishedAt,
+      String? urlToImage,
+      String? content});
 }
 
 /// @nodoc
@@ -59,38 +59,38 @@ class _$NewsCopyWithImpl<$Res, $Val extends News>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = null,
-    Object? title = null,
-    Object? description = null,
-    Object? publishedAt = null,
-    Object? urlToImage = null,
-    Object? content = null,
+    Object? author = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? publishedAt = freezed,
+    Object? urlToImage = freezed,
+    Object? content = freezed,
   }) {
     return _then(_value.copyWith(
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
+              as String?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      publishedAt: null == publishedAt
+              as String?,
+      publishedAt: freezed == publishedAt
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      urlToImage: null == urlToImage
+              as String?,
+      urlToImage: freezed == urlToImage
           ? _value.urlToImage
           : urlToImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -103,12 +103,12 @@ abstract class _$$NewsImplCopyWith<$Res> implements $NewsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String author,
-      String title,
-      String description,
-      String publishedAt,
-      String urlToImage,
-      String content});
+      {String? author,
+      String? title,
+      String? description,
+      String? publishedAt,
+      String? urlToImage,
+      String? content});
 }
 
 /// @nodoc
@@ -121,38 +121,38 @@ class __$$NewsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = null,
-    Object? title = null,
-    Object? description = null,
-    Object? publishedAt = null,
-    Object? urlToImage = null,
-    Object? content = null,
+    Object? author = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? publishedAt = freezed,
+    Object? urlToImage = freezed,
+    Object? content = freezed,
   }) {
     return _then(_$NewsImpl(
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
+              as String?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      publishedAt: null == publishedAt
+              as String?,
+      publishedAt: freezed == publishedAt
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      urlToImage: null == urlToImage
+              as String?,
+      urlToImage: freezed == urlToImage
           ? _value.urlToImage
           : urlToImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -172,17 +172,17 @@ class _$NewsImpl implements _News {
       _$$NewsImplFromJson(json);
 
   @override
-  final String author;
+  final String? author;
   @override
-  final String title;
+  final String? title;
   @override
-  final String description;
+  final String? description;
   @override
-  final String publishedAt;
+  final String? publishedAt;
   @override
-  final String urlToImage;
+  final String? urlToImage;
   @override
-  final String content;
+  final String? content;
 
   @override
   String toString() {
@@ -226,27 +226,27 @@ class _$NewsImpl implements _News {
 
 abstract class _News implements News {
   factory _News(
-      {required final String author,
-      required final String title,
-      required final String description,
-      required final String publishedAt,
-      required final String urlToImage,
-      required final String content}) = _$NewsImpl;
+      {required final String? author,
+      required final String? title,
+      required final String? description,
+      required final String? publishedAt,
+      required final String? urlToImage,
+      required final String? content}) = _$NewsImpl;
 
   factory _News.fromJson(Map<String, dynamic> json) = _$NewsImpl.fromJson;
 
   @override
-  String get author;
+  String? get author;
   @override
-  String get title;
+  String? get title;
   @override
-  String get description;
+  String? get description;
   @override
-  String get publishedAt;
+  String? get publishedAt;
   @override
-  String get urlToImage;
+  String? get urlToImage;
   @override
-  String get content;
+  String? get content;
   @override
   @JsonKey(ignore: true)
   _$$NewsImplCopyWith<_$NewsImpl> get copyWith =>

@@ -7,12 +7,12 @@ part of 'news.dart';
 // **************************************************************************
 
 _$NewsImpl _$$NewsImplFromJson(Map<String, dynamic> json) => _$NewsImpl(
-      author: json['author'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      publishedAt: json['publishedAt'] as String,
-      urlToImage: json['urlToImage'] as String,
-      content: json['content'] as String,
+      author: json['author'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      publishedAt: json['publishedAt'] as String?,
+      urlToImage: json['urlToImage'] as String?,
+      content: json['content'] as String?,
     );
 
 Map<String, dynamic> _$$NewsImplToJson(_$NewsImpl instance) =>

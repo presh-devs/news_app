@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:news_app/env/env.dart';
 import 'package:news_app/features/news/domain/news_response.dart';

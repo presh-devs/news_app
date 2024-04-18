@@ -1,16 +1,17 @@
-# news_app
+# DevProjects - News mobile app
 
-A new Flutter project.
+This is an open source project from [DevProjects](http://www.codementor.io/projects). Feedback and questions are welcome!
+Find the project requirements here: [News mobile app](https://www.codementor.io/projects/mobile/news-mobile-app-atx32p8oq5)
 
-## Getting Started
+## Tech/framework used
+Built with Flutter and Dart
 
-This project is a starting point for a Flutter application.
+## Screenshots and demo
+Screenshots of your app and/or a link to your live demo
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
+Instructions for other developers on how to install and run your code on their local environment.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+Most open source projects use the MIT license. Feel free to choose whichever license you prefer.

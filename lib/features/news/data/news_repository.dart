@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:news_app/env/env.dart';
-import 'package:news_app/features/news/domain/news.dart';
 import 'package:news_app/features/news/domain/news_response.dart';
 import 'package:news_app/utils/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

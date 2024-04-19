@@ -3,24 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/common_widgets/news_card.dart';
 import 'package:news_app/features/news/data/news_repository.dart';
-import 'package:news_app/features/news/domain/news.dart';
 import 'package:news_app/features/news/domain/news_response.dart';
+import 'package:news_app/features/news/presentation/news_page.dart';
 
-class NewsPage extends ConsumerStatefulWidget {
-  const NewsPage({super.key});
+class HeadlineNewsPage extends ConsumerWidget {
+  const HeadlineNewsPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _NewsPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+     final AsyncValue<NewsResponse> responseAsync = ref.watch(fetchHeadlinesNewsProvider(  country: 'us'));
 
-class _NewsPageState extends ConsumerState<NewsPage> {
-  @override
-  Widget build(BuildContext context) {
-    final AsyncValue<NewsResponse> responseAsync = ref.watch(fetchAllNewsProvider);
-   
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Today's News"),
+        title: const Text("Headline News"),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,7 +26,7 @@ class _NewsPageState extends ConsumerState<NewsPage> {
             return responseAsync.when(
                 data: (response) {
                   final newsItem = response.articles[index];
-                  return NewsCard(newsItem: newsItem);
+                  return  NewsCard(newsItem: newsItem);
                 },
                 error: (error, stck) => Text(error.toString()),
                 loading: (() => const CircularProgressIndicator()));

@@ -11,7 +11,7 @@ class NewsRepository {
   final Dio client;
   final String apiKey;
 
-  Future<NewsResponse> fetchNews() async {
+  Future<NewsResponse> fetchAllNews() async {
     final uri = Uri(
         scheme: 'https',
         host: 'newsapi.org',
@@ -27,6 +27,23 @@ class NewsRepository {
    
     return NewsResponse.fromJson(response.data);
   }
+
+    Future<NewsResponse> fetchHeadlineNews({String? category, String? country }) async {
+    final uri = Uri(
+        scheme: 'https',
+        host: 'newsapi.org',
+        path: '/v2/top-headlines',
+        queryParameters: {
+          'apiKey': apiKey,
+          'category': category,
+          'country':country
+          
+        });
+       
+    final response = await client.getUri(uri);
+   
+    return NewsResponse.fromJson(response.data);
+  }
 }
 
 @riverpod
@@ -34,7 +51,13 @@ NewsRepository newsRepository(NewsRepositoryRef ref) =>
     NewsRepository(client: ref.watch(dioProvider), apiKey: Env.newsApiKey);
 
 @riverpod
-Future<NewsResponse> fetchNews(FetchNewsRef ref, ) {
+Future<NewsResponse> fetchAllNews(FetchAllNewsRef ref, ) {
   final newsRepo = ref.watch(newsRepositoryProvider);
-  return newsRepo.fetchNews();
+  return newsRepo.fetchAllNews();
+}
+
+@riverpod
+Future<NewsResponse> fetchHeadlinesNews(FetchHeadlinesNewsRef ref,{String? category, String? country } ) {
+  final newsRepo = ref.watch(newsRepositoryProvider);
+  return newsRepo.fetchHeadlineNews(category: category, country: country);
 }

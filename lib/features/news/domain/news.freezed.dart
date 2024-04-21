@@ -26,6 +26,7 @@ mixin _$News {
   String? get publishedAt => throw _privateConstructorUsedError;
   String? get urlToImage => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $NewsCopyWith<$Res> {
       String? description,
       String? publishedAt,
       String? urlToImage,
-      String? content});
+      String? content,
+      String? url});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$NewsCopyWithImpl<$Res, $Val extends News>
     Object? publishedAt = freezed,
     Object? urlToImage = freezed,
     Object? content = freezed,
+    Object? url = freezed,
   }) {
     return _then(_value.copyWith(
       author: freezed == author
@@ -91,6 +94,10 @@ class _$NewsCopyWithImpl<$Res, $Val extends News>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -108,7 +115,8 @@ abstract class _$$NewsImplCopyWith<$Res> implements $NewsCopyWith<$Res> {
       String? description,
       String? publishedAt,
       String? urlToImage,
-      String? content});
+      String? content,
+      String? url});
 }
 
 /// @nodoc
@@ -127,6 +135,7 @@ class __$$NewsImplCopyWithImpl<$Res>
     Object? publishedAt = freezed,
     Object? urlToImage = freezed,
     Object? content = freezed,
+    Object? url = freezed,
   }) {
     return _then(_$NewsImpl(
       author: freezed == author
@@ -153,6 +162,10 @@ class __$$NewsImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$NewsImpl implements _News {
       required this.description,
       required this.publishedAt,
       required this.urlToImage,
-      required this.content});
+      required this.content,
+      required this.url});
 
   factory _$NewsImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsImplFromJson(json);
@@ -183,10 +197,12 @@ class _$NewsImpl implements _News {
   final String? urlToImage;
   @override
   final String? content;
+  @override
+  final String? url;
 
   @override
   String toString() {
-    return 'News(author: $author, title: $title, description: $description, publishedAt: $publishedAt, urlToImage: $urlToImage, content: $content)';
+    return 'News(author: $author, title: $title, description: $description, publishedAt: $publishedAt, urlToImage: $urlToImage, content: $content, url: $url)';
   }
 
   @override
@@ -202,13 +218,14 @@ class _$NewsImpl implements _News {
                 other.publishedAt == publishedAt) &&
             (identical(other.urlToImage, urlToImage) ||
                 other.urlToImage == urlToImage) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, author, title, description,
-      publishedAt, urlToImage, content);
+      publishedAt, urlToImage, content, url);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +248,8 @@ abstract class _News implements News {
       required final String? description,
       required final String? publishedAt,
       required final String? urlToImage,
-      required final String? content}) = _$NewsImpl;
+      required final String? content,
+      required final String? url}) = _$NewsImpl;
 
   factory _News.fromJson(Map<String, dynamic> json) = _$NewsImpl.fromJson;
 
@@ -247,6 +265,8 @@ abstract class _News implements News {
   String? get urlToImage;
   @override
   String? get content;
+  @override
+  String? get url;
   @override
   @JsonKey(ignore: true)
   _$$NewsImplCopyWith<_$NewsImpl> get copyWith =>

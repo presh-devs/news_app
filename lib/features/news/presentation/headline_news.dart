@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app/common_widgets/news_card.dart';
 import 'package:news_app/features/news/data/news_repository.dart';
 import 'package:news_app/features/news/domain/news_response.dart';
 import 'package:news_app/features/news/presentation/news_page.dart';
+import 'package:news_app/routing/app_router.dart';
 
 class HeadlineNewsPage extends ConsumerWidget {
   const HeadlineNewsPage({super.key});
@@ -26,7 +28,11 @@ class HeadlineNewsPage extends ConsumerWidget {
             return responseAsync.when(
                 data: (response) {
                   final newsItem = response.articles[index];
-                  return  NewsCard(newsItem: newsItem);
+                  return  NewsCard(newsItem: newsItem, onPressed: () => context.goNamed(
+                          AppRoute.news.name,
+                         
+                          extra: newsItem,
+                        ),);
                 },
                 error: (error, stck) => Text(error.toString()),
                 loading: (() => const CircularProgressIndicator()));

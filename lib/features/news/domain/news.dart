@@ -14,6 +14,7 @@ class News with _$News {
     required String? publishedAt,
     required String? urlToImage,
     required String? content,
+    required String? url,
   }) = _News;
 
   factory News.fromJson(Map<String, dynamic> json) =>

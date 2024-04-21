@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:news_app/env/env.dart';
 import 'package:news_app/features/news/domain/news_response.dart';
 import 'package:news_app/utils/dio_provider.dart';
+import 'package:news_app/utils/webview_controller.dart';
+import 'package:riverpod/src/framework.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'news_repository.g.dart';
@@ -59,5 +61,6 @@ Future<NewsResponse> fetchAllNews(FetchAllNewsRef ref, ) {
 @riverpod
 Future<NewsResponse> fetchHeadlinesNews(FetchHeadlinesNewsRef ref,{String? category, String? country } ) {
   final newsRepo = ref.watch(newsRepositoryProvider);
+  
   return newsRepo.fetchHeadlineNews(category: category, country: country);
 }

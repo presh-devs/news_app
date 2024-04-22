@@ -18,17 +18,22 @@ class HeadlineNewsPage extends ConsumerWidget {
     return responseAsync.when(
         data: (response) {
           return Scaffold(
-            appBar: AppBar(title: Text('Healine News'),),
+            appBar: AppBar(
+              title: const Text('Healine News'),
+            ),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: ListView.separated(
                 itemCount: responseAsync.value?.articles.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
                   final newsItem = responseAsync.value!.articles[index];
-                  return NewsCard(newsItem: newsItem, onPressed: () => context.goNamed(
-                            AppRoute.headlineNewsDetails.name,
-                            extra: newsItem,
-                          ),);
+                  return NewsCard(
+                    newsItem: newsItem,
+                    onPressed: () => context.goNamed(
+                      AppRoute.headlineNewsDetails.name,
+                      extra: newsItem,
+                    ),
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(

@@ -6,7 +6,7 @@ part of 'webview_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$webviewControllerHash() => r'877fef1b067b47d9be3898763df3d9642c898797';
+String _$webviewControllerHash() => r'52807252e5de4c6b0d1b3fb145afa1904cb271cf';
 
 /// Copied from Dart SDK
 class _SystemHash {

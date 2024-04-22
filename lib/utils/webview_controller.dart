@@ -10,7 +10,11 @@ WebViewController webviewController (WebviewControllerRef ref, {required String 
  WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
   ..setBackgroundColor(const Color(0x00000000))
-  // ..setNavigationDelegate(
+
+  ..loadRequest(Uri.parse(url));
+
+
+    // ..setNavigationDelegate(
   //   NavigationDelegate(
   //     onProgress: (int progress) {
   //       // Update loading bar.
@@ -28,4 +32,3 @@ WebViewController webviewController (WebviewControllerRef ref, {required String 
   //     },
   //   ),
   // )
-  ..loadRequest(Uri.parse(url));

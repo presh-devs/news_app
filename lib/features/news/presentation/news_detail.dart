@@ -10,14 +10,9 @@ class DetailsPage extends ConsumerWidget {
 final News news;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //   final WebViewController controller = WebViewController()
-    // ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    // ..setBackgroundColor(const Color(0x00000000))
-    // ..loadRequest(Uri.parse(news.url?? "https://www.google.com/"));
     final webviewController = ref.watch(webviewControllerProvider(url: news.url!));
     return  Scaffold(
       appBar: AppBar(
-
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

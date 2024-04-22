@@ -5,6 +5,7 @@ import 'package:news_app/features/news/domain/news.dart';
 import 'package:news_app/features/news/presentation/headline_news.dart';
 import 'package:news_app/features/news/presentation/news_detail.dart';
 import 'package:news_app/features/news/presentation/news_page.dart';
+import 'package:news_app/features/sources/presentation/sources_page.dart';
 import 'package:news_app/routing/scaffold_with_nested_naviagtion.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,11 +14,13 @@ part 'app_router.g.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorForYouKey = GlobalKey<NavigatorState>(debugLabel: 'forYou');
 final _shellNavigatorHeadlineKey = GlobalKey<NavigatorState>(debugLabel: 'headlineNews');
+final _shellNavigatorSourcesKey = GlobalKey<NavigatorState>(debugLabel: 'sources');
 
 enum AppRoute {
   headineNews,
-  news,
-  favorites,
+  headlineNewsDetails,
+  forYouNewsDetails,
+  sources,
 }
 
 @riverpod
@@ -41,16 +44,16 @@ GoRouter goRouter (GoRouterRef ref) => GoRouter(
                 ),
                 routes: [
                   // child route
-                  // GoRoute(
-                  //   path: 'details',
-                  //   name: AppRoute.news.name,
-                  //   pageBuilder: (context, state) {
+                   GoRoute(
+                    path: 'detailsB',
+                    name:AppRoute.forYouNewsDetails.name,
+                    pageBuilder: (context, state) {
                      
-                  //     final news = state.extra is News
-                  //         ? state.extra as News
-                  //         : null;
-                  //     return NoTransitionPage(child: DetailsPage(news: news!)) ;
-                  //   }),
+                      final news = state.extra is News
+                          ? state.extra as News
+                          : null;
+                      return NoTransitionPage(child: DetailsPage(news: news!)) ;
+                    }),
                 ],
               ),
             ],
@@ -67,8 +70,8 @@ GoRouter goRouter (GoRouterRef ref) => GoRouter(
                 routes: [
                   // child route
                   GoRoute(
-                    path: 'details',
-                    name: AppRoute.news.name,
+                    path: 'detailsA',
+                    name: AppRoute.headlineNewsDetails.name,
                     pageBuilder: (context, state) {
                      
                       final news = state.extra is News
@@ -76,6 +79,32 @@ GoRouter goRouter (GoRouterRef ref) => GoRouter(
                           : null;
                       return NoTransitionPage(child: DetailsPage(news: news!)) ;
                     }),
+                ],
+              ),
+            ],
+          ),
+
+           StatefulShellBranch(
+            navigatorKey: _shellNavigatorSourcesKey,
+            routes: [
+              // top route inside branch
+              GoRoute(
+                path: '/sources',
+                pageBuilder: (context, state) => const NoTransitionPage(
+                  child: SourcesPage(),
+                ),
+                routes: [
+                  // child route
+                  // GoRoute(
+                  //   path: 'details',
+                  //   name: AppRoute.news.name,
+                  //   pageBuilder: (context, state) {
+                     
+                  //     final news = state.extra is News
+                  //         ? state.extra as News
+                  //         : null;
+                  //     return NoTransitionPage(child: DetailsPage(news: news!)) ;
+                  //   }),
                 ],
               ),
             ],

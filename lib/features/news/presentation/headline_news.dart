@@ -9,24 +9,33 @@ import 'package:news_app/routing/app_router.dart';
 
 class HeadlineNewsPage extends ConsumerWidget {
   const HeadlineNewsPage({super.key});
-
-  @override
+ static const pageSize = 20;
+ @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<NewsResponse> responseAsync =
-        ref.watch(fetchHeadlinesNewsProvider(country: 'us'));
+        ref.watch(fetchHeadlinesNewsProvider(page: 1, country: 'us', ));
+    final totalResults = responseAsync.valueOrNull?.totalResults;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Headline News"),
+        // centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: ListView.builder(
+          // itemCount: totalResults ?? 1,
+          itemBuilder: (BuildContext context, int index) {
+            final page = index ~/ pageSize + 1;
+            final indexInPage = index % pageSize;
 
-    return responseAsync.when(
-        data: (response) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Healine News'),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ListView.separated(
-                itemCount: responseAsync.value?.articles.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  final newsItem = responseAsync.value!.articles[index];
+            final AsyncValue<NewsResponse> responseAsync =
+                ref.watch(fetchHeadlinesNewsProvider(country: 'us', page: page));
+            return responseAsync.when(
+                data: (response) {
+                  if (indexInPage >= response.articles.length) {
+                    return null;
+                  }
+                  final newsItem = response.articles[indexInPage];
                   return NewsCard(
                     newsItem: newsItem,
                     onPressed: () => context.goNamed(
@@ -35,16 +44,13 @@ class HeadlineNewsPage extends ConsumerWidget {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 50,
-                  );
-                },
-              ),
-            ),
-          );
-        },
-        error: (error, stck) => Text(error.toString()),
-        loading: (() => const LoadingWidget(title: 'Headline News')));
+                error: (error, stck) => Text('${error.toString()} eeuwn'),
+                loading: (() => const CircularProgressIndicator()));
+           
+          },
+          // separatorBuilder: (context, index) => const SizedBox(height: 16,),
+        ),
+      ),
+    );
   }
 }

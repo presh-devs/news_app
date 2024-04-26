@@ -21,8 +21,7 @@ NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NewsResponse {
   List<News> get articles => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_results')
-  int? get totalResults => throw _privateConstructorUsedError;
+  int get totalResults => throw _privateConstructorUsedError;
   List<String> get errors => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,10 +36,7 @@ abstract class $NewsResponseCopyWith<$Res> {
           NewsResponse value, $Res Function(NewsResponse) then) =
       _$NewsResponseCopyWithImpl<$Res, NewsResponse>;
   @useResult
-  $Res call(
-      {List<News> articles,
-      @JsonKey(name: 'total_results') int? totalResults,
-      List<String> errors});
+  $Res call({List<News> articles, int totalResults, List<String> errors});
 }
 
 /// @nodoc
@@ -57,7 +53,7 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
   @override
   $Res call({
     Object? articles = null,
-    Object? totalResults = freezed,
+    Object? totalResults = null,
     Object? errors = null,
   }) {
     return _then(_value.copyWith(
@@ -65,10 +61,10 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
               as List<News>,
-      totalResults: freezed == totalResults
+      totalResults: null == totalResults
           ? _value.totalResults
           : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       errors: null == errors
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
@@ -85,10 +81,7 @@ abstract class _$$NewsResponseImplCopyWith<$Res>
       __$$NewsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<News> articles,
-      @JsonKey(name: 'total_results') int? totalResults,
-      List<String> errors});
+  $Res call({List<News> articles, int totalResults, List<String> errors});
 }
 
 /// @nodoc
@@ -103,7 +96,7 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? articles = null,
-    Object? totalResults = freezed,
+    Object? totalResults = null,
     Object? errors = null,
   }) {
     return _then(_$NewsResponseImpl(
@@ -111,10 +104,10 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
           ? _value._articles
           : articles // ignore: cast_nullable_to_non_nullable
               as List<News>,
-      totalResults: freezed == totalResults
+      totalResults: null == totalResults
           ? _value.totalResults
           : totalResults // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       errors: null == errors
           ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
@@ -128,7 +121,7 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
 class _$NewsResponseImpl implements _NewsResponse {
   _$NewsResponseImpl(
       {required final List<News> articles,
-      @JsonKey(name: 'total_results') required this.totalResults,
+      required this.totalResults,
       final List<String> errors = const []})
       : _articles = articles,
         _errors = errors;
@@ -145,8 +138,7 @@ class _$NewsResponseImpl implements _NewsResponse {
   }
 
   @override
-  @JsonKey(name: 'total_results')
-  final int? totalResults;
+  final int totalResults;
   final List<String> _errors;
   @override
   @JsonKey()
@@ -197,7 +189,7 @@ class _$NewsResponseImpl implements _NewsResponse {
 abstract class _NewsResponse implements NewsResponse {
   factory _NewsResponse(
       {required final List<News> articles,
-      @JsonKey(name: 'total_results') required final int? totalResults,
+      required final int totalResults,
       final List<String> errors}) = _$NewsResponseImpl;
 
   factory _NewsResponse.fromJson(Map<String, dynamic> json) =
@@ -206,8 +198,7 @@ abstract class _NewsResponse implements NewsResponse {
   @override
   List<News> get articles;
   @override
-  @JsonKey(name: 'total_results')
-  int? get totalResults;
+  int get totalResults;
   @override
   List<String> get errors;
   @override

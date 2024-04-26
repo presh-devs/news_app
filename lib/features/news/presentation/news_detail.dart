@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/common_widgets/loading_widget.dart';
 import 'package:news_app/features/news/domain/news.dart';
 import 'package:news_app/utils/webview_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';

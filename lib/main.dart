@@ -15,7 +15,7 @@ class MyApp extends ConsumerWidget {
        final goRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'News app',
       routerConfig: goRouter,
       theme: ThemeData(
        

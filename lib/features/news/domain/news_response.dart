@@ -11,7 +11,7 @@ class NewsResponse with _$NewsResponse {
   factory NewsResponse({
     
     required List<News> articles,
-    @JsonKey(name: 'total_results') required int? totalResults,
+    required int totalResults,
    
     @Default([]) List<String> errors,
   }) = _NewsResponse;

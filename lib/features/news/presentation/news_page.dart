@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/common_widgets/loading_widget.dart';
 import 'package:news_app/common_widgets/news_card.dart';
+import 'package:news_app/common_widgets/news_shimmer.dart';
 import 'package:news_app/features/news/data/news_repository.dart';
 import 'package:news_app/features/news/domain/news_response.dart';
 import 'package:news_app/routing/app_router.dart';
@@ -24,7 +25,7 @@ class NewsPage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: ListView.builder(
-          // itemCount: totalResults ,
+           itemCount: totalResults ,
           itemBuilder: (BuildContext context, int index) {
             final page = index ~/ pageSize + 1;
             final indexInPage = index % pageSize;
@@ -46,7 +47,7 @@ class NewsPage extends ConsumerWidget {
                   );
                 },
                 error: (error, stck) => Text(error.toString()),
-                loading: (() => const CircularProgressIndicator()));
+                loading: (() => const NewsListTileShimmer()));
            
           },
           // separatorBuilder: (context, index) => const SizedBox(height: 16,),

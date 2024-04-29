@@ -13,10 +13,10 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed ,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        onTap: onPressed ,
         child: Container(
           // padding: const EdgeInsets.symmetric(vertical: 16),
           decoration:  BoxDecoration(

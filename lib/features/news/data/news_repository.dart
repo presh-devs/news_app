@@ -43,7 +43,7 @@ class NewsRepository {
           'apiKey': apiKey,
            'page':'$page',
           'category': category,
-          'country':country
+          'country':'$country'
           
         });
        

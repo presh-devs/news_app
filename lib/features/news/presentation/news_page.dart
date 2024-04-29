@@ -22,67 +22,43 @@ class NewsPage extends ConsumerWidget {
         title: const Text("Today's News"),
         // centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView.builder(
-           itemCount: totalResults ,
-          itemBuilder: (BuildContext context, int index) {
-            final page = index ~/ pageSize + 1;
-            final indexInPage = index % pageSize;
-
-            final AsyncValue<NewsResponse> responseAsync =
-                ref.watch(fetchAllNewsProvider(page: page));
-            return responseAsync.when(
-                data: (response) {
-                  if (indexInPage >= response.articles.length) {
-                    return null;
-                  }
-                  final newsItem = response.articles[indexInPage];
-                  return NewsCard(
-                    newsItem: newsItem,
-                    onPressed: () => context.goNamed(
-                      AppRoute.forYouNewsDetails.name,
-                      extra: newsItem,
-                    ),
-                  );
-                },
-                error: (error, stck) => Text(error.toString()),
-                loading: (() => const NewsListTileShimmer()));
-           
-          },
-          // separatorBuilder: (context, index) => const SizedBox(height: 16,),
+      body: RefreshIndicator(
+        onRefresh: () {
+          return ref.refresh(fetchAllNewsProvider(page: 1).future);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: ListView.builder(
+             itemCount: totalResults ,
+            itemBuilder: (BuildContext context, int index) {
+              final page = index ~/ pageSize + 1;
+              final indexInPage = index % pageSize;
+        
+              final AsyncValue<NewsResponse> responseAsync =
+                  ref.watch(fetchAllNewsProvider(page: page));
+              return responseAsync.when(
+                  data: (response) {
+                    if (indexInPage >= response.articles.length) {
+                      return null;
+                    }
+                    final newsItem = response.articles[indexInPage];
+                    return NewsCard(
+                      newsItem: newsItem,
+                      onPressed: () => context.goNamed(
+                        AppRoute.forYouNewsDetails.name,
+                        extra: newsItem,
+                      ),
+                    );
+                  },
+                  error: (error, stck) => Text(error.toString()),
+                  loading: (() => const NewsListTileShimmer()));
+             
+            },
+            // separatorBuilder: (context, index) => const SizedBox(height: 16,),
+          ),
         ),
       ),
     );
   }
 }
 
-
- // Scaffold(
-                  //   appBar: AppBar(
-                  //     title: const Text("Today's News"),
-                  //     // centerTitle: true,
-                  //   ),
-                  //   body: Padding(
-                  //     padding: const EdgeInsets.all(16.0),
-                  //     child: ListView.separated(
-                  //       itemCount: responseAsync.value?.articles.length ?? 0,
-                  //       itemBuilder: (BuildContext context, int index) {
-                  //         final newsItem = response.articles[index];
-                  //                return NewsCard(
-                  //                 newsItem: newsItem,
-                  //                 onPressed: () => context.goNamed(
-                  //                   AppRoute.forYouNewsDetails.name,
-                  //                   extra: newsItem,
-                  //                 ),
-                  //               );
-
-                  //       },
-                  //       separatorBuilder: (BuildContext context, int index) {
-                  //         return const SizedBox(
-                  //           height: 50,
-                  //         );
-                  //       },
-                  //     ),
-                  //   ),
-                  // );

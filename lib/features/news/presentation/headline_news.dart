@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +16,7 @@ class HeadlineNewsPage extends ConsumerWidget {
  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<NewsResponse> responseAsync =
-        ref.watch(fetchHeadlinesNewsProvider(page: 1, country: 'us', ));
+        ref.watch(fetchHeadlinesNewsProvider(page: 1, country: 'ng', ));
     final totalResults = responseAsync.valueOrNull?.totalResults;
     return Scaffold(
       appBar: AppBar(
@@ -23,33 +25,44 @@ class HeadlineNewsPage extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView.builder(
-          itemCount: totalResults,
-          itemBuilder: (BuildContext context, int index) {
-            final page = index ~/ pageSize + 1;
-            final indexInPage = index % pageSize;
-
-            final AsyncValue<NewsResponse> responseAsync =
-                ref.watch(fetchHeadlinesNewsProvider(country: 'us', page: page));
-            return responseAsync.when(
-                data: (response) {
-                  if (indexInPage >= response.articles.length) {
-                    return null;
-                  }
-                  final newsItem = response.articles[indexInPage];
-                  return NewsCard(
-                    newsItem: newsItem,
-                    onPressed: () => context.goNamed(
-                      AppRoute.headlineNewsDetails.name,
-                      extra: newsItem,
-                    ),
-                  );
-                },
-             error: (error, stck) => const NewsListTileShimmer(),
-                loading: (() => const NewsListTileShimmer()));
-           
+        child: RefreshIndicator(
+          onRefresh: () async{
+            ref.invalidate(fetchHeadlinesNewsProvider);
+            log('Invalidated provider');
+            try {
+              ref.read(fetchHeadlinesNewsProvider(page: 1, country: 'ng', ));
+            } catch (e) {
+              log(e.toString());
+            }
           },
-          // separatorBuilder: (context, index) => const SizedBox(height: 16,),
+          child: ListView.builder(
+            itemCount: totalResults,
+            itemBuilder: (BuildContext context, int index) {
+              final page = index ~/ pageSize + 1;
+              final indexInPage = index % pageSize;
+          
+              final AsyncValue<NewsResponse> responseAsync =
+                  ref.watch(fetchHeadlinesNewsProvider(country: 'ng', page: page));
+              return responseAsync.when(
+                  data: (response) {
+                    if (indexInPage >= response.articles.length) {
+                      return null;
+                    }
+                    final newsItem = response.articles[indexInPage];
+                    return NewsCard(
+                      newsItem: newsItem,
+                      onPressed: () => context.goNamed(
+                        AppRoute.headlineNewsDetails.name,
+                        extra: newsItem,
+                      ),
+                    );
+                  },
+               error: (error, stck) =>  Text(error.toString()),
+                  loading: (() => const NewsListTileShimmer()));
+             
+            },
+            // separatorBuilder: (context, index) => const SizedBox(height: 16,),
+          ),
         ),
       ),
     );
